@@ -1,0 +1,58 @@
+---
+title: "ggplot_hook"
+author: "Anita Durg"
+date: '2022-06-11'
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown [click here!](https://rmarkdown.rstudio.com>).
+
+## Setting up my environment
+
+Notes: setting up my environment by adding ‘tidyverse’ and ‘palmer penguins’ packages
+
+```{r loading packages}
+install.packages("tidyverse")
+install.packages("palmerpenguins")
+library(ggplot2)
+library(palmerpenguins)
+```
+Here we will go through a series of visualizations:
+
+### plotting flipper length against body mass:
+
+```{r plot with color purple on species}
+ggplot(data = penguins,aes(x = flipper_length_mm, y = body_mass_g)) + 
+  geom_point(color="purple") +
+  labs(title="Flipper and body mass in purple")
+```
+
+### plotting flipper length against body mass by species:
+
+Here we plot by species:
+
+```{r flipper by species}
+ggplot(data = penguins,aes(x = flipper_length_mm, y = body_mass_g)) + 
+  geom_point(aes(shape=species)) +
+  labs(title="Flipper and body mass by species")
+```
+
+### Flipper and body mass by species and sex
+
+Here we plot flipper length against body mass and look at the breakdown by species and sex:
+
+```{r plot by species and sex with color blue}
+ggplot(data = penguins,aes(x = flipper_length_mm, y = body_mass_g)) + 
+  geom_point(aes(color=species,shape=species)) +
+  labs(title="Flipper and body mass with shape,color, and sex") +
+  facet_wrap(~sex)
+```
+
